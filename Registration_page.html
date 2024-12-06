@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .output-container {
+            margin-top: 20px;
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .output-container h3 {
+            text-align: center;
+        }
+
+        .output-container p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Registration Form</h2>
+        <form id="registrationForm">
+            <!-- Name field -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+
+            <!-- Email field -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+
+            <!-- Phone Number field -->
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+
+            <!-- Address field -->
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address">
+
+            <!-- Password field -->
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required placeholder="Enter a password" minlength="6">
+
+            <!-- Confirm Password field -->
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password" minlength="6">
+
+            <!-- Submit button -->
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <div id="output" class="output-container" style="display: none;">
+        <h3>Registration Details</h3>
+        <div id="outputContent"></div>
+    </div>
+
+    <script>
+        // JavaScript to handle form submission and display the output
+        const form = document.getElementById('registrationForm');
+        const outputContainer = document.getElementById('output');
+        const outputContent = document.getElementById('outputContent');
+       
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();  // Prevent form from submitting normally
+
+            // Collect form data
+            const formData = new FormData(form);
+            let outputHTML = '<ul>';
+
+            // Loop through the form data and create list items to display
+            formData.forEach((value, key) => {
+                outputHTML += `<li><strong>${key}:</strong> ${value}</li>`;
+            });
+
+            outputHTML += '</ul>';
+
+            // Display the output container and the collected data
+            outputContent.innerHTML = outputHTML;
+            outputContainer.style.display = 'block';  // Show the output container
+
+            // Optionally, you can reset the form after submission
+            form.reset();
+        });
+    </script>
+
+</body>
+</html>
